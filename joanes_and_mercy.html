@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>joanes and mercy ♥️</title>
+  <style>
+    body {
+      text-align: center;
+      background: #ffe6f0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    h1 {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #d10056;
+    }
+    .love-text {
+      font-size: 26px;
+      font-weight: bold;
+      color: red;
+      text-shadow: 0 0 10px pink, 0 0 20px red;
+      margin-top: 30px;
+      animation: fadeIn 3s ease-in-out;
+    }
+    .apology-text {
+      font-size: 20px;
+      color: #333;
+      margin-top: 15px;
+      font-style: italic;
+    }
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-600px) scale(1.5); opacity: 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Joanes and Mercy ♥️</h1>
+  <div id="controls" style="margin-top:12px">
+    <button id="downloadBtn">Download this page (open on phone)</button>
+    <button id="qrBtn">Show QR to open on phone</button>
+    <div id="qr" style="margin-top:8px"></div>
+  </div>
+  <script>
+    // Download the current HTML so it can be transferred and opened on a phone
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+      const html = '<!doctype html>\n' + document.documentElement.outerHTML;
+      const blob = new Blob([html], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'joanes_and_mercy.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+
+    // Create a QR code that encodes the full page as a data URL so a phone can open it
+    document.getElementById('qrBtn').addEventListener('click', function() {
+      const page = document.documentElement.outerHTML;
+      const dataUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent(page);
+      const qrContainer = document.getElementById('qr');
+      qrContainer.innerHTML = '';
+      const img = document.createElement('img');
+      img.alt = 'QR code to open page on phone';
+      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(dataUrl);
+      qrContainer.appendChild(img);
+      const hint = document.createElement('div');
+      hint.style.fontSize = '12px';
+      hint.style.color = '#333';
+      hint.innerText = 'Scan this QR with your phone camera to open the page (may fail if content is very large).';
+      qrContainer.appendChild(hint);
+    });
+    // Step 1: Ask for girl's name
+    let girl = prompt("Enter your name:");
+    if (girl && girl.toLowerCase() === "mercy") {
+      alert("Name accepted! Proceeding...");
+
+      // Step 2: Ask for boyfriend's name
+      let boy = prompt("Enter your boyfriend's name:");
+      if (boy && (boy.toLowerCase() === "joanes" || boy.toLowerCase() === "jones")) {
+        
+        // Show love message
+        let msg = document.createElement("div");
+        msg.className = "love-text";
+        msg.innerHTML = "💕 My dearest Mercy and me Joanes 💕 <br><br>" +
+                        "Two hearts, one journey, bound together forever.<br>" +
+                        "May your love shine brighter than the stars,<br>" +
+                        "and may every heartbeat whisper:<br>" +
+                        "Mercy and Joanes, forever lovers ♥️";
+        document.body.appendChild(msg);
+
+        // Apology line
+        let apology = document.createElement("div");
+        apology.className = "apology-text";
+        apology.innerText = "And if I ever wronged you in any way, I’m truly sorry 💖";
+        document.body.appendChild(apology);
+
+        // Function to create floating hearts
+        function createHeart() {
+          let heart = document.createElement("div");
+          heart.className = "heart";
+          heart.innerText = "♥";
+          heart.style.left = Math.random() * window.innerWidth + "px";
+          heart.style.top = window.innerHeight + "px";
+          heart.style.fontSize = (20 + Math.random() * 30) + "px";
+          document.body.appendChild(heart);
+
+          // Remove after animation
+          setTimeout(() => {
+            heart.remove();
+          }, 6000);
+        }
+
+        // Keep spawning hearts
+        setInterval(createHeart, 500);
+      } else {
+        alert("Boyfriend's name not accepted.");
+      }
+    } else {
+      alert("Name not accepted.");
+    }
+  </script><div class="love-text">💕 My dearest Mercy and me Joanes 💕 <br><br>Two hearts, one journey, bound together forever.<br>May your love shine brighter than the stars,<br>and may every heartbeat whisper:<br>Mercy and Joanes, forever lovers ♥️</div><div class="apology-text">And if I ever wronged you in any way, I’m truly sorry 💖</div>
+
+<div class="heart" style="left: 1766.66px; top: 991px; font-size: 39.6246px;">♥</div><div class="heart" style="left: 1864.88px; top: 991px; font-size: 41.3441px;">♥</div><div class="heart" style="left: 300.858px; top: 991px; font-size: 46.0438px;">♥</div><div class="heart" style="left: 1910.61px; top: 991px; font-size: 35.9437px;">♥</div><div class="heart" style="left: 1773.47px; top: 991px; font-size: 35.0192px;">♥</div><div class="heart" style="left: 151.935px; top: 991px; font-size: 29.0076px;">♥</div><div class="heart" style="left: 23.6989px; top: 991px; font-size: 27.4245px;">♥</div><div class="heart" style="left: 676.084px; top: 991px; font-size: 24.1418px;">♥</div><div class="heart" style="left: 1733.19px; top: 991px; font-size: 31.1412px;">♥</div><div class="heart" style="left: 39.7252px; top: 991px; font-size: 46.895px;">♥</div><div class="heart" style="left: 1917.55px; top: 991px; font-size: 42.3208px;">♥</div><div class="heart" style="left: 835.438px; top: 991px; font-size: 31.6257px;">♥</div></body></html>
