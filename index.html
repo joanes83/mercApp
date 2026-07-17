@@ -1,0 +1,191 @@
+<<!doctype html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>joanes and mercy ♥️</title>
+  <style>
+    body {
+      text-align: center;
+      background: #f7f7f7;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    h1 {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #0d87ac;
+    }
+    .love-text {
+      font-size: 26px;
+      font-weight: bold;
+      color: rgb(12, 173, 33);
+      text-shadow: 0 0 10px pink, 0 0 20px red;
+      margin-top: 30px;
+      animation: fadeIn 3s ease-in-out;
+    }
+    .apology-text {
+      font-size: 20px;
+      color: #333;
+      margin-top: 15px;
+      font-style: italic;
+    }
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-600px) scale(1.5); opacity: 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    #controls { margin-top: 12px; }
+    #openPhoneLink {
+      margin-left: 8px;
+      cursor: pointer;
+      color: #0066cc;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      font-size: 14px;
+    }
+    #qr img { max-width: 300px; height: auto; }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Joanes and Mercy ♥️</h1>
+  <div id="controls">
+    <button id="downloadBtn">Download this page (open on phone)</button>
+    <button id="qrBtn">Show QR to open on phone</button>
+    <a id="openPhoneLink" href="#">Open on phone (open + copy data URL + show QR)</a>
+    <div id="qr" style="margin-top:8px"></div>
+  </div>
+  <script>
+    // Helper to get the full page HTML
+    function getFullPageHTML() {
+      // Remove the QR image to avoid embedding the QR inside itself (optional)
+      const clone = document.documentElement.cloneNode(true);
+      const qrDiv = clone.querySelector('#qr');
+      if (qrDiv) qrDiv.innerHTML = '';
+      return '<!doctype html>\\n' + clone.outerHTML;
+    }
+
+    // Download the current HTML so it can be transferred and opened on a phone
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+      const html = getFullPageHTML();
+      const blob = new Blob([html], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'joanes_and_mercy.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+
+    // Create a QR code that encodes the full page as a data URL so a phone can open it
+    function showQRCodeForDataUrl(dataUrl, hintText) {
+      const qrContainer = document.getElementById('qr');
+      qrContainer.innerHTML = '';
+      const img = document.createElement('img');
+      img.alt = 'QR code to open page on phone';
+      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(dataUrl);
+      qrContainer.appendChild(img);
+      const hint = document.createElement('div');
+      hint.style.fontSize = '12px';
+      hint.style.color = '#333';
+      hint.innerText = hintText || 'Scan this QR with your phone camera to open the page (may fail if content is very large).';
+      qrContainer.appendChild(hint);
+    }
+
+    document.getElementById('qrBtn').addEventListener('click', function() {
+      const page = getFullPageHTML();
+      const dataUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent(page);
+      showQRCodeForDataUrl(dataUrl);
+    });
+
+    // "Open on phone" link: open data URL in new tab, attempt to copy to clipboard, and show QR
+    document.getElementById('openPhoneLink').addEventListener('click', async function(e) {
+      e.preventDefault();
+      const page = getFullPageHTML();
+      const dataUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent(page);
+
+      // 1) Try to open in a new tab/window (may be blocked by popup blockers)
+      try {
+        window.open(dataUrl, '_blank');
+      } catch (err) {
+        // ignore
+      }
+
+      // 2) Try to copy the data URL to clipboard (may be blocked)
+      try {
+        await navigator.clipboard.writeText(dataUrl);
+        alert('Data URL copied to clipboard. You can paste it into your phone browser (may not work on all phones).');
+      } catch (err) {
+        // If clipboard fails, show a hint
+        console.warn('Clipboard copy failed:', err);
+        alert('Could not copy automatically. The QR code will be shown — scan it with your phone camera.');
+      }
+
+      // 3) Show QR for easier scanning
+      showQRCodeForDataUrl(dataUrl, 'Scan this QR with your phone to open the page. If the QR fails (page too large), use the "Download" button to transfer the file.');
+    });
+
+    // Step 1: Ask for girl's name
+    let girl = prompt("Enter your name:");
+    if (girl && girl.toLowerCase() === "mercy") {
+      alert("Name accepted! Proceeding...");
+
+      // Step 2: Ask for boyfriend's name
+      let boy = prompt("Enter your boyfriend's name:");
+      if (boy && (boy.toLowerCase() === "joanes" || boy.toLowerCase() === "jones")) {
+        
+        // Show love message
+        let msg = document.createElement("div");
+        msg.className = "love-text";
+        msg.innerHTML = "💕 My dearest Mercy and me Joanes 💕 <br><br>" +
+                        "Two hearts, one journey, bound together forever.<br>" +
+                        "May your love shine brighter than the stars,<br>" +
+                        "and may every heartbeat whisper:<br>" +
+                        "Mercy and Joanes, forever lovers ♥️";
+        document.body.appendChild(msg);
+
+        // Apology line
+        let apology = document.createElement("div");
+        apology.className = "apology-text";
+        apology.innerText = "And if I ever wronged you in any way, I’m truly sorry 💖";
+        document.body.appendChild(apology);
+
+        // Function to create floating hearts
+        function createHeart() {
+          let heart = document.createElement("div");
+          heart.className = "heart";
+          heart.innerText = "♥";
+          heart.style.left = Math.random() * window.innerWidth + "px";
+          heart.style.top = window.innerHeight + "px";
+          heart.style.fontSize = (20 + Math.random() * 30) + "px";
+          document.body.appendChild(heart);
+
+          // Remove after animation
+          setTimeout(() => {
+            heart.remove();
+          }, 6000);
+        }
+
+        // Keep spawning hearts
+        setInterval(createHeart, 500);
+      } else {
+        alert("Boyfriend's name not accepted.");
+      }
+    } else {
+      alert("Name not accepted.");
+    }
+  </script>
+  <!-- Your static content preserved (optional duplicates removed to avoid double content) -->
+  <div class="love-text">💕 My dearest Mercy and me Joanes 💕 <br><br>Two hearts, one journey, bound together forever.<br>May your love shine brighter than the stars,<br>and may every heartbeat whisper:<br>Mercy and Joanes, forever lovers ♥️</div>
+  <div class="apology-text">And if I ever wronged you in any way, I’m truly sorry 💖</div>
+</body></html>
