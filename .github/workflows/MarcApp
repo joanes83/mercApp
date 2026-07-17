@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mercy and Joanes ♥️</title>
+  <style>
+    body {
+      text-align: center;
+      background: #ffe6f0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    h1 {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #d10056;
+    }
+    .love-text {
+      font-size: 26px;
+      font-weight: bold;
+      color: red;
+      text-shadow: 0 0 10px pink, 0 0 20px red;
+      margin-top: 30px;
+      animation: fadeIn 3s ease-in-out;
+    }
+    .apology-text {
+      font-size: 20px;
+      color: #333;
+      margin-top: 15px;
+      font-style: italic;
+    }
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-600px) scale(1.5); opacity: 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to our App ♥️</h1>
+  <script>
+    // Step 1: Ask for girl's name
+    let girl = prompt("Enter your name:");
+    if (girl && girl.toLowerCase() === "mercy") {
+      alert("Name accepted! Proceeding...");
+
+      // Step 2: Ask for boyfriend's name
+      let boy = prompt("Enter your boyfriend's name:");
+      if (boy && (boy.toLowerCase() === "joanes" || boy.toLowerCase() === "jones")) {
+        
+        // Show love message
+        let msg = document.createElement("div");
+        msg.className = "love-text";
+        msg.innerHTML = "💕 My dearest Mercy and Joanes 💕 <br><br>" +
+                        "Two hearts, one journey, bound together forever.<br>" +
+                        "May your love shine brighter than the stars,<br>" +
+                        "and may every heartbeat whisper:<br>" +
+                        "Mercy and Joanes, forever lovers ♥️";
+        document.body.appendChild(msg);
+
+        // Apology line
+        let apology = document.createElement("div");
+        apology.className = "apology-text";
+        apology.innerText = "And if I ever wronged you in any way, I’m truly sorry 💖";
+        document.body.appendChild(apology);
+
+        // Function to create floating hearts
+        function createHeart() {
+          let heart = document.createElement("div");
+          heart.className = "heart";
+          heart.innerText = "♥";
+          heart.style.left = Math.random() * window.innerWidth + "px";
+          heart.style.top = window.innerHeight + "px";
+          heart.style.fontSize = (20 + Math.random() * 30) + "px";
+          document.body.appendChild(heart);
+
+          // Remove after animation
+          setTimeout(() => {
+            heart.remove();
+          }, 6000);
+        }
+
+        // Keep spawning hearts
+        setInterval(createHeart, 500);
+      } else {
+        alert("Boyfriend's name not accepted.");
+      }
+    } else {
+      alert("Name not accepted.");
+    }
+  </script>
+</body>
+</html>
